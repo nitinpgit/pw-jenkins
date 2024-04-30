@@ -10,7 +10,7 @@ pipeline {
       stage('setup') {
          steps {
             sh 'npm ci'
-            sh 'npx playwright install --with-deps'
+            sh 'sudo npx playwright install --with-deps'
          }
       }
       stage('e2e tests') {
