@@ -11,6 +11,7 @@ pipeline {
          steps {
             sh 'npm ci'
             sh 'npx playwright install'
+            sh 'sudo npx playwright install-deps'
          }
       }
       stage('e2e tests') {
