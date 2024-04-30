@@ -5,8 +5,8 @@ pipeline {
       stage('e2e-tests') {
          steps {
             git 'https://github.com/nitinpgit/pw-jenkins.git'
-            bat 'npm ci'
-            bat 'npx playwright test'
+            sh 'npm ci'
+            sh 'npx playwright test'
          }
       }
    }
