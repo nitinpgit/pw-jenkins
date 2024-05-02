@@ -1,22 +1,23 @@
 pipeline {
-   agent any
-   tools {nodejs "NodeJS_20_10_0"}
-   stages {
-      stage('git checkout') {
-         steps {
-            git 'https://github.com/nitinpgit/pw-jenkins.git'
-         }
-      }
-      stage('setup') {
-         steps {
-            sh 'npm ci'
-            sh 'sudo npx playwright install --with-deps'
-         }
-      }
-      stage('e2e tests') {
-         steps {
-            sh 'npx playwright test'
-         }
-      }
-   }
+    agent any
+    
+    tools {
+        nodejs "node"
+    }
+
+    stages {
+        stage('node setup') {
+            steps {
+                echo 'pipeline starts'
+                git 'https://github.com/nitinpgit/pw-jenkins.git'
+                bat 'npm install'
+            }
+        }
+        stage('playwright tests') {
+            steps {
+                bat 'npx playwright test'
+                echo 'pipeline ends'
+            }
+        }
+    }
 }
