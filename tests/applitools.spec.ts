@@ -28,8 +28,12 @@ test.describe('Applitools Playwright Tests', () => {
   test.beforeEach(async ({ page }) => {
     console.log(`beforeEach APPLITOOLS_API_KEY: ${process.env.APPLITOOLS_API_KEY}`);
     eyes = new Eyes(Runner, Config);
+    let apiKey = process.env.APPLITOOLS_API_KEY || 'undefined_apiKeys'
     let batchId =  process.env.APPLITOOLS_BATCH_ID || 'undefined_id'
     let batchName =  process.env.APPLITOOLS_BATCH_NAME || 'undefined_name'
+    console.log(`apiKey APPLITOOLS_API_KEY: ${apiKey}`);
+
+    eyes.setApiKey(apiKey);
     eyes.setBatch(batchName, batchId);
 
     // Start Applitools Visual AI Test
