@@ -9,17 +9,14 @@ test.beforeAll(async () => {
 
   // Configure Applitools SDK to run on the Ultrafast Grid
   Runner = new VisualGridRunner({ testConcurrency: 5 });
-  Batch = new BatchInfo({ name: `Applitools Playwright Typescript Quickstart` });
+  Batch = new BatchInfo({ name: `Applitools Playwright Typescript Quickstart Google` });
 
   Config = new Configuration();
   Config.setBatch(Batch);
   
   Config.addBrowsers(
     { name: BrowserType.CHROME, width: 800, height: 600 },
-    { name: BrowserType.FIREFOX, width: 1600, height: 1200 },
-    { name: BrowserType.SAFARI, width: 1024, height: 768 },
-    { chromeEmulationInfo: { deviceName: DeviceName.iPhone_11, screenOrientation: ScreenOrientation.PORTRAIT } },
-    { chromeEmulationInfo: { deviceName: DeviceName.Nexus_10, screenOrientation: ScreenOrientation.LANDSCAPE } }
+    { chromeEmulationInfo: { deviceName: DeviceName.iPhone_11, screenOrientation: ScreenOrientation.PORTRAIT } }
   )
 });
 
@@ -43,11 +40,11 @@ test.describe('Applitools Playwright Tests', () => {
   });
   test('applitools test', async ({ page }) => {
     test.setTimeout(1000 * 60);
-    await page.goto('https://playwright.dev/');
+    await page.goto('https://www.google.com/');
     // Expect a title "to contain" a substring.
-    await expect(page).toHaveTitle(/Playwright/);
+    await expect(page).toHaveTitle(/Google/);
      // Full Page - Visual AI Assertion
-     await eyes.check('playwright dev home page', Target.window().fully());
+     await eyes.check('google home page', Target.window().fully());
   });
 
 
